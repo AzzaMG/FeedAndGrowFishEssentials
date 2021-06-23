@@ -1,0 +1,12 @@
+{
+	"modUuid": "fb185842-4863-4b4f-aa4f-9409af584929",
+	"modName": "Essentials",
+	"binFile": "FeedAndGrowEssentials.dll",
+	"entryPoint": "FeedAndGrowEssentials.FeedAndGrowEssentials",
+	"modDescription": "Some general improvements to feed and grow fish to make the game play a lot better.",
+	"modAuthor": "Ash47",
+	"supportedGames": {
+		"Feed and Grow": true
+	},
+	"releaseDate": "2020/01/01"
+}
