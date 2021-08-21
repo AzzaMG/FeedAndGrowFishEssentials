@@ -39,100 +39,95 @@
       <HintPath>$(azzamods_path_dlls)\3.5\Azza0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-<Reference Include="Assembly-CSharp-firstpass">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="Assembly-CSharp">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Assembly-CSharp.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="DecalSystem.Runtime">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\DecalSystem.Runtime.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="Mono.Posix">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Mono.Posix.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="Mono.Security">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Mono.Security.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="Mono.Simd">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Mono.Simd.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="mscorlib">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\mscorlib.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="NATTraversalForUNET">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\NATTraversalForUNET.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="NeoFurUnityPlugin">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\NeoFurUnityPlugin.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="Open.Nat">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Open.Nat.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="RakNetSwig">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\RakNetSwig.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="System.Configuration">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.Configuration.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="System.Core">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.Core.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="System">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="System.Security">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.Security.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="System.Threading">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.Threading.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="System.Xml">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.Xml.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="UnityEngine.Analytics">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\UnityEngine.Analytics.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="UnityEngine">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\UnityEngine.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="UnityEngine.Networking">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\UnityEngine.Networking.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="UnityEngine.UI">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\UnityEngine.UI.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
-<Reference Include="XInputDotNetPure">
-                    <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\XInputDotNetPure.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DecalSystem.Runtime">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\DecalSystem.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Posix">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Mono.Posix.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Mono.Security.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Simd">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Mono.Simd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NATTraversalForUNET">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\NATTraversalForUNET.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NeoFurUnityPlugin">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\NeoFurUnityPlugin.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Open.Nat">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\Open.Nat.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RakNetSwig">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\RakNetSwig.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.Configuration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.Security.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.Threading.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\System.Xml.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\UnityEngine.Analytics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\UnityEngine.Networking.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="XInputDotNetPure">
+      <HintPath>$(azzamods_gamepath_feedandgrow)\Feed and Grow_Data\Managed\XInputDotNetPure.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FeedAndGrowEssentials.cs" />
@@ -145,6 +140,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>(if not exist "$(azzamods_path_mods)\Feed and Grow\$(TargetName)\" mkdir "$(azzamods_path_mods)\Feed and Grow\$(TargetName)\") &amp;&amp; copy /Y "$(TargetDir)*" "$(azzamods_path_mods)\Feed and Grow\$(TargetName)\" &amp;&amp; del /F /Q "$(azzamods_path_mods)\Feed and Grow\$(TargetName)\$(TargetName).pdb"</PostBuildEvent>
+    <PostBuildEvent>(if not exist "$(azzamods_path_mods)\feedandgrow\$(TargetName)\" mkdir "$(azzamods_path_mods)\feedandgrow\$(TargetName)\") &amp;&amp; copy /Y "$(TargetDir)*" "$(azzamods_path_mods)\feedandgrow\$(TargetName)\" &amp;&amp; del /F /Q "$(azzamods_path_mods)\feedandgrow\$(TargetName)\$(TargetName).pdb"</PostBuildEvent>
   </PropertyGroup>
 </Project>

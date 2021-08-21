@@ -1,9 +1,13 @@
 ﻿using Assets.Code;
 using Assets.Code.GameLogic.Things.SpecialFishes;
+using Assets.Code.GameLogic.UI;
+using Assets.Code.GameLogic.UI.Settings;
+using Assets.Code.Libaries.Generic;
 using Assets.Code.Maps;
 using Assets.Code.UI.Extensions;
 using AzzaMods;
 using HarmonyLib;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -32,6 +36,15 @@ namespace FeedAndGrowEssentials
         private static string optionUnlimitedZoom = "Unlimited Zoom";
         private static string optionRemoveCameraClipping = "Remove Camera Water Clipping";
         private static string actionLevelUp = "Level Up";
+        private static string optionMaxFish = "Max Fish";
+        private static string optionRemoveLevelCap = "Remove Level Cap";
+
+        // Level cap
+        private static bool overrideRemoveLevelCap = false;
+        private static bool removeLevelCap = false;
+
+        // Prevent spawning of non-default mobs
+        private static Dictionary<string, bool> noDefaultSpawn = new Dictionary<string, bool>();
 
         private float cachedCoins = 0;
 
@@ -58,6 +71,12 @@ namespace FeedAndGrowEssentials
             Patching.Prefix(
                 typeof(FishSelectFilterButton).GetMethod("CanBeSelected", Patching.AnyMethod),
                 typeof(FeedAndGrowEssentials).GetMethod("Prefix_CanBeSelected", Patching.AnyMethod)
+            );
+
+            // Unlock all fish survival mode
+            Patching.Prefix(
+                typeof(SurvivalStar).GetMethod("GetStarValue", Patching.AnyMethod),
+                this.GetType().GetMethod("PrefixGetStarValue", Patching.AnyMethod)
             );
 
             // Infinite Sprint
@@ -114,10 +133,27 @@ namespace FeedAndGrowEssentials
 
             // Level up
             Options.RegisterAction(actionLevelUp);
-            Options.SetDescription(actionLevelUp, "Level up your current fish");
+            Options.SetDescription(actionLevelUp, "Level up your current fish.");
+            Options.AddPersistence(actionLevelUp);
+
+            // Max fish
+            Options.RegisterInt(optionMaxFish, 4);
+            Options.SetDescription(optionMaxFish, "The max number of each type of fish that is allow to spawn.");
+            Options.AddPersistence(optionMaxFish);
+
+            // Remove level cap
+            Options.RegisterBool(optionRemoveLevelCap, removeLevelCap);
+            Options.SetDescription(optionRemoveLevelCap, "Remove the maximum level cap, allowing your fish to get past level 296.");
+            Options.AddPersistence(optionRemoveLevelCap);
+            Patching.Prefix(typeof(LivingEntity).GetMethod("CanLevelUp", Patching.AnyMethod), this.GetType().GetMethod("PrefixCanLevelUp", Patching.AnyMethod));
 
             // Ensure the spawns exist
             EnsureSpawnsExist();
+
+            // Fix issues with spawning too many of an ent
+            Patching.Prefix(typeof(NpcGenerator).GetMethod("ApplyPlayerSize", Patching.AnyMethod), this.GetType().GetMethod("PrefixApplyPlayerSize", Patching.AnyMethod));
+
+            StartCoroutine(SlowUpdate());
         }
 
         void OnModUnloaded()
@@ -200,6 +236,12 @@ namespace FeedAndGrowEssentials
             {
                 active_cameraFix = Options.GetBool(optionName);
             }
+
+            // Remove level cap
+            if(optionName == optionRemoveLevelCap)
+            {
+                removeLevelCap = Options.GetBool(optionName);
+            }
         }
 
         void OnAction(string actionName, string actionType)
@@ -212,6 +254,9 @@ namespace FeedAndGrowEssentials
 
         void OnSceneChanged(string oldScene, string newScene)
         {
+            // Reset the no spawn thing
+            noDefaultSpawn = new Dictionary<string, bool>();
+
             // Ensure the spawns exist
             EnsureSpawnsExist();
         }
@@ -355,8 +400,11 @@ namespace FeedAndGrowEssentials
 
                     Map.Instance.ActiveSpawns[livingEntity] = Map.Instance.ActiveSpawns[keys[rnd.Next(keys.Length)]];
 
+                    // Prevent any spawns of this one
+                    noDefaultSpawn[livingEntity.name] = true;
+
                     // This thing isn't allow to spawn anything
-                    if (!LivingEntity.FishAmountList.ContainsKey(livingEntity.name))
+                    /*if (!LivingEntity.FishAmountList.ContainsKey(livingEntity.name))
                     {
                         LivingEntity.FishAmountList.Add(livingEntity.name, 1);
                     }
@@ -395,10 +443,30 @@ namespace FeedAndGrowEssentials
             // Ensure we have a fish to level up
             if (PlayerController.Instance == null || PlayerController.Instance.CurrentLivingEntity == null) return;
 
+            // Allow infinite levels
+            overrideRemoveLevelCap = true;
+
             // Grab our fish and set its experience to what is required to level up plus one
             LivingEntity ourFish = PlayerController.Instance.CurrentLivingEntity;
+
+            int currentLevel = ourFish.Level;
+
+            // Manage our fish
+            Traverse traverse = new Traverse(ourFish);
+            traverse.Field<bool>("_canGainExperience").Value = true;
+
             float expRequired = ourFish.GetRequiredExp() + 0.000001f;
             ourFish.Experience = expRequired;
+
+            // Did we fail to give it a new level?
+            if(currentLevel == ourFish.Level)
+            {
+                // Add one anyways!
+                ourFish.Level += 1;
+            }
+
+            // no longer allow infinite level
+            overrideRemoveLevelCap = false;
         }
 
         // This is for unlimited zoom
@@ -432,6 +500,90 @@ namespace FeedAndGrowEssentials
 
             // Return it
             return codes.AsEnumerable();
+        }
+
+        // Fix for star values
+        private static bool PrefixGetStarValue(ref int __result)
+        {
+            if(active_unlockAllFish)
+            {
+                // Return result is 3
+                __result = 3;
+
+                // Don't run original method
+                return false;
+            }
+
+            // Run original method
+            return true;
+        }
+
+        public static bool PrefixApplyPlayerSize(LivingEntity entity, ref int __result, NpcGenerator __instance)
+        {
+            // Do normal function
+            if (JsonMonoSingleton<Gameplay, Gameplay.B, Gameplay.S, Gameplay.I, Gameplay.F>.Instance.GameMode == Gameplay.Mode.Survival && entity is Predator)
+            {
+                __result = Mathf.Clamp((int)(__instance.SurvivalPredatorRatio * entity.GetMaxCount()), 1, 9999);
+            }
+            else
+            {
+                __result = (int)entity.GetMaxCount();
+            }
+
+            // Limt max fish based on our option
+            int theMax = Options.GetInt(optionMaxFish);
+            if(__result > theMax)
+            {
+                __result = theMax;
+            }
+
+            if(noDefaultSpawn.ContainsKey(entity.name))
+            {
+                __result = 0;
+            }
+
+            // Don't run original method
+            return false;
+        }
+
+        private static bool PrefixCanLevelUp(ref bool __result)
+        {
+            // Should we allow infinite levels?
+            if(removeLevelCap || overrideRemoveLevelCap)
+            {
+                // Return result is true (allowed to level up)
+                __result = true;
+
+                // Don't run original method
+                return false;
+            }
+
+            // Do run original method
+            return true;
+        }
+
+        private IEnumerator SlowUpdate()
+        {
+            while(true)
+            {
+                // wait a second
+                yield return new WaitForSeconds(1f);
+
+                // If no level cap
+                if(removeLevelCap)
+                {
+                    // Ensure we have a fish to level up
+                    if (PlayerController.Instance != null && PlayerController.Instance.CurrentLivingEntity != null)
+                    {
+                        // Grab our fish
+                        LivingEntity ourFish = PlayerController.Instance.CurrentLivingEntity;
+
+                        // Ensure it is allowed to gain EXP
+                        Traverse traverse = new Traverse(ourFish);
+                        traverse.Field<bool>("_canGainExperience").Value = true;
+                    }
+                }
+            }
         }
     }
 }

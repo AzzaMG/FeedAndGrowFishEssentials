@@ -3,10 +3,26 @@
 	"modName": "Essentials",
 	"binFile": "FeedAndGrowEssentials.dll",
 	"entryPoint": "FeedAndGrowEssentials.FeedAndGrowEssentials",
-	"modDescription": "Some general improvements to feed and grow fish to make the game play a lot better.",
+	"modDescription": "Get started with the essentials pack which will unlock all fish for you instantly. Get unlimited coins to be able to spawn any fish you like. Breath forever under water with the unlimited oxygen mod. Get super fast and move around with ease using the unlimited sprint mod. Getting eaten too easily? Try the unlimited health option. Camera too restricting? Try zooming out infinitly with the infinite zoom mod or remove the water clipping to pop your camera up out of the water. Gameplay too slow? Try instantly leveling up, bind it to a key and become the biggest fish in the pond.",
 	"modAuthor": "Ash47",
 	"supportedGames": {
-		"Feed and Grow": true
+		"feedandgrow": true
 	},
-	"releaseDate": "2020/01/01"
+	"releaseDate": "2020/01/01",
+	"github": "https://github.com/AzzaMediaGroup/FeedAndGrowFishEssentials",
+	"isEssentials": true,
+	"hintOptions": {
+		"Unlock All Fish": "Unlocks and allows you to play as any fish on any map. This will also give you 3 stars on all survival maps which is required to unlock fish in survival maps.",
+		"Unlimited Coins": "Change the number of coins you have between 0 and 1000. Enabling the lock will prevent your coins from ever going up or down.",
+		"Coins": "Change the number of coins you have between 0 and 1000. Enabling the lock will prevent your coins from ever going up or down.",
+		"Unlimited Oxygen": "Prevents your oxygen from lowering allowing you to breath under water forever with fish / animals that have limited breath.",
+		"Unlimited Sprint": "Gives you unlimited sprint which allows you to sprint forever.",
+		"Unlimited Health": "Gives you unlimited health to prevent other fish from killing you. This won't stop things from swallowing you if you're tiny.",
+		"Unlimited Zoom": "Allows you to zoom infinitely.",
+		"Remove Camera Water Clipping": "Allows the camera to clip above the water when your fish is below the water.",
+		"Level Up": "Level up your current fish.",
+		"Max Fish": "The max number of each type of fish that is allow to spawn.",
+		"Remove Level Cap": "Remove the maximum level cap, allowing your fish to get past level 296."
+	},
+	"azzaModsLink": "mods/feed-and-grow-fish/essentials/"
 }
