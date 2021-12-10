@@ -12,17 +12,69 @@
 	"github": "https://github.com/AzzaMediaGroup/FeedAndGrowFishEssentials",
 	"isEssentials": true,
 	"hintOptions": {
-		"Unlock All Fish": "Unlocks and allows you to play as any fish on any map. This will also give you 3 stars on all survival maps which is required to unlock fish in survival maps.",
-		"Unlimited Coins": "Change the number of coins you have between 0 and 1000. Enabling the lock will prevent your coins from ever going up or down.",
-		"Coins": "Change the number of coins you have between 0 and 1000. Enabling the lock will prevent your coins from ever going up or down.",
-		"Unlimited Oxygen": "Prevents your oxygen from lowering allowing you to breath under water forever with fish / animals that have limited breath.",
-		"Unlimited Sprint": "Gives you unlimited sprint which allows you to sprint forever.",
-		"Unlimited Health": "Gives you unlimited health to prevent other fish from killing you. This won't stop things from swallowing you if you're tiny.",
-		"Unlimited Zoom": "Allows you to zoom infinitely.",
-		"Remove Camera Water Clipping": "Allows the camera to clip above the water when your fish is below the water.",
-		"Level Up": "Level up your current fish.",
-		"Max Fish": "The max number of each type of fish that is allow to spawn.",
-		"Remove Level Cap": "Remove the maximum level cap, allowing your fish to get past level 296."
+		"Unlock All Fish": {
+			"optionName": "Unlock All Fish",
+			"defaultValue": "false",
+			"optionType": "bool",
+			"description": "Unlocks and allows you to play as any fish on any map."
+		},
+		"Coins": {
+			"optionName": "Coins",
+			"defaultValue": "0",
+			"optionType": "float",
+			"description": "Change the number of coins you have between 0 and 1000. Enabling the lock will prevent your coins from ever going up or down.",
+			"showLock": "true",
+			"minValue": "0",
+			"maxValue": "1000"
+		},
+		"Unlimited Oxygen": {
+			"optionName": "Unlimited Oxygen",
+			"defaultValue": "false",
+			"optionType": "bool",
+			"description": "Prevents your oxygen from lowering allowing you to breath under water forever with fish / animals that have limited breath."
+		},
+		"Unlimited Sprint": {
+			"optionName": "Unlimited Sprint",
+			"defaultValue": "false",
+			"optionType": "bool",
+			"description": "Gives you unlimited sprint which allows you to sprint forever."
+		},
+		"Unlimited Health": {
+			"optionName": "Unlimited Health",
+			"defaultValue": "false",
+			"optionType": "bool",
+			"description": "Gives you unlimited health to prevent other fish from killing you. This won't stop things from swallowing you if you're tiny."
+		},
+		"Unlimited Zoom": {
+			"optionName": "Unlimited Zoom",
+			"defaultValue": "false",
+			"optionType": "bool",
+			"description": "Allows you to zoom infinitely."
+		},
+		"Remove Camera Water Clipping": {
+			"optionName": "Remove Camera Water Clipping",
+			"defaultValue": "false",
+			"optionType": "bool",
+			"description": "Allows the camera to clip above the water when your fish is below the water."
+		},
+		"Level Up": {
+			"optionName": "Level Up",
+			"defaultValue": "Level Up",
+			"optionType": "action",
+			"description": "Level up your current fish."
+		},
+		"Max Fish": {
+			"optionName": "Max Fish",
+			"defaultValue": "4",
+			"optionType": "int",
+			"description": "The max number of each type of fish that is allow to spawn."
+		},
+		"Remove Level Cap": {
+			"optionName": "Remove Level Cap",
+			"defaultValue": "false",
+			"optionType": "bool",
+			"description": "Remove the maximum level cap, allowing your fish to get past level 296."
+		}
 	},
 	"azzaModsLink": "mods/feed-and-grow-fish/essentials/"
 }

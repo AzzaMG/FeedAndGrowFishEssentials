@@ -57,20 +57,20 @@ namespace FeedAndGrowEssentials
             // Camera Fix 1
             Patching.Prefix(
                 typeof(PlayerController).GetMethod("RaycastCameraPosition", Patching.AnyMethod),
-                typeof(FeedAndGrowEssentials).GetMethod("Prefix_RaycastCameraPosition", Patching.AnyMethod)
+                this.GetType().GetMethod("Prefix_RaycastCameraPosition", Patching.AnyMethod)
             );
 
             // Camera Fix 2
             Patching.Prefix(
                 typeof(PlayerController).GetMethod("FixWaterPosition", Patching.AnyMethod),
-                typeof(FeedAndGrowEssentials).GetMethod("Prefix_RaycastCameraPosition", Patching.AnyMethod)
+                this.GetType().GetMethod("Prefix_RaycastCameraPosition", Patching.AnyMethod)
             );
 
 
             // Unlock all fish fix
             Patching.Prefix(
                 typeof(FishSelectFilterButton).GetMethod("CanBeSelected", Patching.AnyMethod),
-                typeof(FeedAndGrowEssentials).GetMethod("Prefix_CanBeSelected", Patching.AnyMethod)
+                this.GetType().GetMethod("Prefix_CanBeSelected", Patching.AnyMethod)
             );
 
             // Unlock all fish survival mode
@@ -82,13 +82,13 @@ namespace FeedAndGrowEssentials
             // Infinite Sprint
             Patching.Postfix(
                 typeof(LivingEntity).GetMethod("Update", Patching.AnyMethod),
-                typeof(FeedAndGrowEssentials).GetMethod("Postfix_update", Patching.AnyMethod)
+                this.GetType().GetMethod("Postfix_update", Patching.AnyMethod)
             );
 
             // Unlimited Breathing Underwater
             Patching.Prefix(
                 typeof(AirBreathing).GetMethod("Update", Patching.AnyMethod),
-                typeof(FeedAndGrowEssentials).GetMethod("Prefix_Update", Patching.AnyMethod)
+                this.GetType().GetMethod("Prefix_Update", Patching.AnyMethod)
             );
 
             // Unlock all fish
@@ -132,7 +132,7 @@ namespace FeedAndGrowEssentials
             Options.AddPersistence(optionRemoveCameraClipping);
 
             // Level up
-            Options.RegisterAction(actionLevelUp);
+            Options.RegisterAction(actionLevelUp, "Level Up");
             Options.SetDescription(actionLevelUp, "Level up your current fish.");
             Options.AddPersistence(actionLevelUp);
 
@@ -217,7 +217,7 @@ namespace FeedAndGrowEssentials
                     {
                         // Configure it
                         unlimitedZoomHarmony = new Harmony("FeedAndGrowUnlimitedZoomCustomHarmony");
-                        unlimitedZoomHarmony.Patch(typeof(PlayerController).GetMethod("Update", Patching.AnyMethod), null, null, new HarmonyMethod(typeof(FeedAndGrowEssentials).GetMethod("TranspilePlayerControllerUpdate")));
+                        unlimitedZoomHarmony.Patch(typeof(PlayerController).GetMethod("Update", Patching.AnyMethod), null, null, new HarmonyMethod(this.GetType().GetMethod("TranspilePlayerControllerUpdate")));
                     }
                 }
                 else
