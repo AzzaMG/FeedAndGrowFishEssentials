@@ -20,7 +20,7 @@
 		},
 		"Coins": {
 			"optionName": "Coins",
-			"defaultValue": "0",
+			"defaultValue": "1000",
 			"optionType": "float",
 			"description": "Change the number of coins you have between 0 and 1000. Enabling the lock will prevent your coins from ever going up or down.",
 			"showLock": "true",
@@ -62,6 +62,13 @@
 			"defaultValue": "Level Up",
 			"optionType": "action",
 			"description": "Level up your current fish."
+		},
+		"Level Up Levels": {
+			"optionName": "Level Up Levels",
+			"defaultValue": "1",
+			"optionType": "int",
+			"description": "How many levels to add each time you level up.",
+			"minValue": "1"
 		},
 		"Max Fish": {
 			"optionName": "Max Fish",

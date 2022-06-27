@@ -36,6 +36,7 @@ namespace FeedAndGrowEssentials
         private static string optionUnlimitedZoom = "Unlimited Zoom";
         private static string optionRemoveCameraClipping = "Remove Camera Water Clipping";
         private static string actionLevelUp = "Level Up";
+        private const string optionLevelUpIncreaseCount = "Level Up Levels";
         private static string optionMaxFish = "Max Fish";
         private static string optionRemoveLevelCap = "Remove Level Cap";
 
@@ -135,6 +136,12 @@ namespace FeedAndGrowEssentials
             Options.RegisterAction(actionLevelUp, "Level Up");
             Options.SetDescription(actionLevelUp, "Level up your current fish.");
             Options.AddPersistence(actionLevelUp);
+
+            // Level up - how many levels?
+            Options.RegisterInt(optionLevelUpIncreaseCount, 1);
+            Options.SetDescription(optionLevelUpIncreaseCount, "How many levels to add each time you level up.");
+            Options.SetMinValue(optionLevelUpIncreaseCount, 1);
+            Options.AddPersistence(optionLevelUpIncreaseCount);
 
             // Max fish
             Options.RegisterInt(optionMaxFish, 4);
@@ -248,7 +255,7 @@ namespace FeedAndGrowEssentials
         {
             if(actionName == actionLevelUp)
             {
-                LevelUpFish();
+                LevelUpFish(Options.GetInt(optionLevelUpIncreaseCount));
             }
         }
 
@@ -438,7 +445,7 @@ namespace FeedAndGrowEssentials
             }
         }
 
-        void LevelUpFish()
+        void LevelUpFish(int totalLevels = 1)
         {
             // Ensure we have a fish to level up
             if (PlayerController.Instance == null || PlayerController.Instance.CurrentLivingEntity == null) return;
@@ -449,21 +456,26 @@ namespace FeedAndGrowEssentials
             // Grab our fish and set its experience to what is required to level up plus one
             LivingEntity ourFish = PlayerController.Instance.CurrentLivingEntity;
 
-            int currentLevel = ourFish.Level;
+            //int currentLevel = ourFish.Level;
 
             // Manage our fish
             Traverse traverse = new Traverse(ourFish);
             traverse.Field<bool>("_canGainExperience").Value = true;
 
+            if(totalLevels > 1)
+            {
+                ourFish.Level += totalLevels - 1;
+            }
+
             float expRequired = ourFish.GetRequiredExp() + 0.000001f;
             ourFish.Experience = expRequired;
 
             // Did we fail to give it a new level?
-            if(currentLevel == ourFish.Level)
+            /*if(currentLevel == ourFish.Level)
             {
                 // Add one anyways!
                 ourFish.Level += 1;
-            }
+            }*/
 
             // no longer allow infinite level
             overrideRemoveLevelCap = false;
